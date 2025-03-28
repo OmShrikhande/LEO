@@ -1,0 +1,19 @@
+# Ignore all YOLOv files
+yolov*
+
+# Ignore specific YOLOv files
+yolov3.cfg
+yolov3.weight
+yolov5s.pt
+yolov8n.pt
+
+whatsaap.py
+
+# Ignore virtual environment folder
+.venv/
+
+# Ignore Python cache files
+__pycache__/
+
+# Ignore environment files
+.env
