@@ -53,6 +53,11 @@ def save_user_data():
         messagebox.showerror("Error", "Invalid email format!")
         return
 
+    # Check if the user agreement checkbox is selected
+    if not agreement_var.get():
+        messagebox.showerror("Error", "You must accept the User Agreement to proceed!")
+        return
+
     # Save data if all validations pass
     with open("user_data.json", "w") as f:
         json.dump(user_data, f, indent=4)
@@ -60,7 +65,7 @@ def save_user_data():
     open_index()
 
 def open_user_info_window():
-    global entry_name, entry_aadhar, gender_var, entry_email, entry_contact1, entry_contact2, entry_contact3, entry_pin
+    global entry_name, entry_aadhar, gender_var, entry_email, entry_contact1, entry_contact2, entry_contact3, entry_pin, agreement_var
     root.destroy()
     
     user_info_window = tk.Tk()
@@ -95,6 +100,16 @@ def open_user_info_window():
     entry_contact1 = create_entry(user_info_window, "Family Contact 1:")
     entry_contact2 = create_entry(user_info_window, "Family Contact 2:")
     entry_contact3 = create_entry(user_info_window, "Family Contact 3:")
+
+    # Add User Agreement section
+    agreement_text = (
+        "By proceeding, you agree that the mic and camera will only be used in critical situations, "
+        "not every time. This software does not harm any personal life or personal information. "
+        "In case of misuse, you are eligible for legal action."
+    )
+    tk.Label(user_info_window, text=agreement_text, wraplength=300, font=("Arial", 8), fg="#ffffff", bg="#000000").pack(pady=10)
+    agreement_var = tk.BooleanVar(value=False)
+    tk.Checkbutton(user_info_window, text="I Agree", variable=agreement_var, bg="#000000", fg="#00ffcc", selectcolor="#000000").pack(pady=5)
 
     tk.Button(user_info_window, text="Save", command=save_user_data, bg="#00ffcc", fg="#000000",
               font=("Arial", 12, "bold"), padx=10, pady=5, relief="flat").pack(pady=15)
