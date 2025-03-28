@@ -1,11 +1,12 @@
 {
-    "name": "om shrikhande",
+    "name": "om",
     "aadhar": "395252626263",
     "gender": "Male",
-    "email": "demo@gmail.com",
+    "email": "om@gmail.com",
     "family_contacts": [
         "1234567890",
         "0987654321",
-        "5678904321"
-    ]
+        "6789054321"
+    ],
+    "pin": "1234"
 }

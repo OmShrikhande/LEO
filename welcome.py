@@ -5,13 +5,16 @@ import os
 
 # Create the main window
 root = tk.Tk()
-root.title("SafeGuard")
+root.title("LEO")
 root.geometry("350x700")  # Mobile-like dimensions
 root.configure(bg="#000000")
 
 # Function to open index.py
 def open_index():
-    root.destroy()
+    try:
+        root.destroy()  # Destroy the main window if it exists
+    except tk.TclError:
+        pass  # Ignore if the window has already been destroyed
     os.system(f"python \"{os.path.abspath('index.py')}\"")
 
 # Check if user_data.json exists at startup
@@ -24,7 +27,8 @@ def save_user_data():
         "aadhar": entry_aadhar.get(),
         "gender": gender_var.get(),
         "email": entry_email.get(),
-        "family_contacts": [entry_contact1.get(), entry_contact2.get(), entry_contact3.get()]
+        "family_contacts": [entry_contact1.get(), entry_contact2.get(), entry_contact3.get()],
+        "pin": entry_pin.get()
     }
 
     # Validation checks
@@ -34,6 +38,10 @@ def save_user_data():
 
     if not user_data["aadhar"].isdigit() or len(user_data["aadhar"]) != 12:
         messagebox.showerror("Error", "Aadhar number must be exactly 12 digits!")
+        return
+
+    if not user_data["pin"].isdigit() or len(user_data["pin"]) != 4:
+        messagebox.showerror("Error", "PIN must be exactly 4 digits!")
         return
 
     for contact in user_data["family_contacts"]:
@@ -52,7 +60,7 @@ def save_user_data():
     open_index()
 
 def open_user_info_window():
-    global entry_name, entry_aadhar, gender_var, entry_email, entry_contact1, entry_contact2, entry_contact3
+    global entry_name, entry_aadhar, gender_var, entry_email, entry_contact1, entry_contact2, entry_contact3, entry_pin
     root.destroy()
     
     user_info_window = tk.Tk()
@@ -72,6 +80,7 @@ def open_user_info_window():
 
     entry_name = create_entry(user_info_window, "Name:")
     entry_aadhar = create_entry(user_info_window, "Aadhar Card:")
+    entry_pin = create_entry(user_info_window, "4-Digit PIN:")
 
     tk.Label(user_info_window, text="Gender:", font=("Arial", 10, "bold"), fg="#00ffcc", bg="#000000").pack(pady=10)
     
@@ -100,7 +109,7 @@ def animate_label(label, text, index=0):
 
 welcome_label = tk.Label(root, text="", font=("Arial", 14, "bold"), fg="#00ffcc", bg="#000000")
 welcome_label.pack(pady=20)
-animate_label(welcome_label, "Welcome to SafeGuard!")
+animate_label(welcome_label, "Welcome to LEO!")
 
 tk.Label(root, text="Please enter your details before proceeding.", fg="#00ffcc", bg="#000000").pack(pady=10)
 ttk.Button(root, text="Enter Details", command=open_user_info_window).pack(pady=20)
