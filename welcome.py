@@ -5,7 +5,7 @@ import os
 
 # Create the main window
 root = tk.Tk()
-root.title("LEO")
+root.title("Ladies Empowerment Organization")
 root.geometry("350x700")  # Mobile-like dimensions
 root.configure(bg="#000000")
 
