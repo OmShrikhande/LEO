@@ -15,7 +15,7 @@ SafeGuard is a personal safety application designed to provide advanced safety f
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/OmShrikhande/LEO.git
    cd LEO
    ```
 
@@ -26,7 +26,7 @@ SafeGuard is a personal safety application designed to provide advanced safety f
 
 3. Run the application:
    ```bash
-   python index.py
+   python welcome.py
    ```
 
 ## Usage
