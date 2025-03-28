@@ -64,8 +64,12 @@ def play_alert_audio():
         pygame.mixer.music.play()
         
         # Keep the script running until the audio is played
-        while pygame.mixer.music.get_busy():
-            time.sleep(0.5)  # Reduce CPU usage
+        try:
+            while pygame.mixer.music.get_busy():
+                time.sleep(0.5)  # Reduce CPU usage
+        except KeyboardInterrupt:
+            print("⏹ Audio playback interrupted by user.")
+            pygame.mixer.music.stop()
     else:
         print("❌ Audio file not found. Please check the path.")
 
