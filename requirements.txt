@@ -1,0 +1,14 @@
+tkinter
+json
+os
+opencv-python
+sounddevice
+numpy
+pygame
+requests
+SpeechRecognition
+pycaw
+comtypes
+twilio==8.2.0
+python-dotenv==1.0.0
+ipinfo==4.3.1
